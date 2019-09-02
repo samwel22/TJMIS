@@ -119,8 +119,146 @@ Route::get('/home', 'HomeController@index')->name('home');
         'uses'=>'ManagerController@dattach',
         'as'=>'manager.dattach'
     ]);
-
-
     //end
+
+
+    //start of school profile
+    Route::get('/school/index',[
+        'uses'=>'MschoolController@index',
+        'as'=>'school.index'
+    ]);
+
+    Route::get('/school/profile',[
+        'uses'=>'SchoolController@index',
+        'as'=>'school.profile'
+    ]);
+
+    Route::get('/school/teacherslist',[
+        'uses'=>'SchoolController@teacherslist',
+        'as'=>'school.teacherslist'
+    ]);
+
+    
+    
+    Route::get('/school/create',[
+            'uses'=>'SchoolController@create',
+            'as'=>'school.create'
+    ]);
+    
+    
+    Route::post('/school/store',[
+        'uses'=>'SchoolController@store',
+        'as'=>'school.store'
+    ]);
+
+    Route::get('/school/edit{id}',[
+        'uses'=>'SchoolController@edit',
+        'as'=>'school.edit'
+    ]);
+
+    Route::get('/school/delete{id}',[
+        'uses'=>'SchoolController@destroy',
+        'as'=>'school.delete'
+    ]);
+
+    Route::post('/school/update{id}',[
+        'uses'=>'SchoolController@update',
+        'as'=>'school.update'
+    ]);
+
+    //end of school profile
+
+
+    //start of teacher request
+    Route::get('/trequest/index',[
+            'uses'=>'TrequestController@index',
+            'as'=>'trequest.index'
+    ]);
+
+    Route::get('/trequest/trequest',[
+            'uses'=>'ManagerController@trequest',
+            'as'=>'trequest.trequest'
+    ]);
+    
+    
+
+    Route::get('/trequest/create',[
+            'uses'=>'TrequestController@create',
+            'as'=>'trequest.create'
+    ]);
+    
+    
+    Route::post('/trequest/store',[
+        'uses'=>'TrequestController@store',
+        'as'=>'trequest.store'
+    ]);
+
+    //end of teacher request
+
+    //TJMIS teachers replay start
+    Route::get('/manager/treplay',[
+        'uses'=>'ManagerController@create',
+        'as'=>'manager.treplay'
+    ]);
+
+
+    Route::post('/manager/store',[
+        'uses'=>'ManagerController@store',
+        'as'=>'manager.store'
+    ]);
+
+    Route::get('/home',[
+        'uses'=>'ManagerController@home',
+        'as'=>'home'
+    ]);
+
+    //end TJMIS teachers replay 
+
+		//test routes
+    
+
+     Route::get('/test/qns',[
+        'uses'=>'QuestionController@create',
+        'as'=>'test.qns'
+    ]);
+
+     Route::post('/qns/store',[
+        'uses'=>'QuestionController@store',
+        'as'=>'qns.store'
+    ]);
+
+      Route::get('/test/index',[
+        'uses'=>'QuestionController@index',
+        'as'=>'test.index'
+    ]);
+
+    Route::get('/test/manage',[
+        'uses'=>'QuestionController@show',
+        'as'=>'test.manage'
+    ]);
+
+    Route::get('/test/edit{id}',[
+        'uses'=>'QuestionController@edit',
+        'as'=>'test.edit'
+    ]);
+
+    Route::post('/test/update{id}',[
+        'uses'=>'QuestionController@update',
+        'as'=>'test.update'
+    ]);
+
+    Route::post('/index/store',[
+        'uses'=>'AnswerController@store',
+        'as'=>'index.store'
+    ]);
+
+    Route::get('/test/result',[
+        'uses'=>'AnswerController@index',
+        'as'=>'test.result'
+    ]);
+
+ //end of test routes
+
+
 
 });

@@ -8,6 +8,7 @@
   <title>TJMIS</title>
   <meta name="csrf-token" content="{{csrf_token()}}">
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
+  <link rel ="stylesheet" href="{{asset('css/toastr.min.css')}}">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -63,7 +64,7 @@
     
         <!-- Optionally, you can add icons to the links -->
   
-         <li class="active"><a href=""><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+         <li class="active"><a href="{{route('home')}}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
           <li><a href=""><i class="fa fa-link"></i> <span>Manage User</span></a></li>
        <li><a href=""><i class="fa fa-link"></i> <span>Permisions</span></a></li>
 
@@ -83,9 +84,9 @@
           </ul>
         </li>
          <li><a href="{{route('manager.index')}}"><i class="fa fa-link"></i> <span>Registered Teachers</span></a></li>
-         <li><a href=""><i class="fa fa-link"></i> <span>Registered Schools</span></a></li>
-        <li><a href=""><i class="fa fa-link"></i> <span>Requested Teachers</span></a></li>
-        <li><a href=""><i class="fa fa-link"></i> <span>Replay Teachers</span></a></li>
+         <li><a href="{{route('school.index')}}"><i class="fa fa-link"></i> <span>Registered Schools</span></a></li>
+        <li><a href="{{route('trequest.trequest')}}"><i class="fa fa-link"></i> <span>Requested Teachers</span></a></li>
+        <li><a href="{{route('manager.treplay')}}"><i class="fa fa-link"></i> <span>Replay Teachers</span></a></li>
         
         <li><a href=""><i class="fa fa-link"></i> <span>Restore Trashed Teacher</span></a></li>
 
@@ -97,16 +98,16 @@
           </a>
           <ul class="treeview-menu">
            
-            <li><a href="">Register</a></li>
+            <li><a href="{{route('school.create')}}">Register</a></li>
 
-            <li><a href="">School Profile</a></li>
+            <li><a href="{{route('school.profile')}}">School Profile</a></li>
     
           </ul>
         </li>
 
-         <li><a href=""><i class="fa fa-link"></i> <span>List of Teachers</span></a></li>
-          <li><a href=""><i class="fa fa-link"></i> <span>Request Teachers</span></a></li>
-          <li><a href=""><i class="fa fa-link"></i> <span>Requested Teachers</span></a></li>
+         <li><a href="{{route('school.teacherslist')}}"><i class="fa fa-link"></i> <span>List of Teachers</span></a></li>
+          <li><a href="{{route('trequest.create')}}"><i class="fa fa-link"></i> <span>Request Teachers</span></a></li>
+          <li><a href="{{route('trequest.index')}}"><i class="fa fa-link"></i> <span>Requested Teachers</span></a></li>
 
           <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>OTVT</span>
@@ -174,5 +175,30 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <script src="/js/app.js"></script>
+<script src="{{asset('js/toastr.min.js')}}"></script>
+
+<script>
+
+@if (Session::has('success'))
+
+      toastr.success("{{Session::get('success')}}")
+      
+@endif
+
+
+@if (Session::has('warning'))
+
+      toastr.warning("{{Session::get('warning')}}")
+      
+@endif
+
+@if (Session::has('info'))
+
+      toastr.info("{{Session::get('info')}}")
+      
+@endif
+
+
+</script>
 </body>
 </html>
