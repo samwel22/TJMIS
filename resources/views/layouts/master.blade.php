@@ -7,7 +7,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>TJMIS</title>
   <meta name="csrf-token" content="{{csrf_token()}}">
-
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -49,10 +48,10 @@
       <div class="user-panel">
         <div class="pull-left image">
           <img src="/img/user.PNG" class="img-circle" alt="User Image">
-         <!--  Welcome:  {{ Auth::user()->name }} -->
+         
         </div>
         <div class="pull-left info">
-         
+          Welcome:  {{ Auth::user()->name }}
          
         </div>
 
@@ -63,19 +62,82 @@
       <ul class="sidebar-menu" data-widget="tree">
     
         <!-- Optionally, you can add icons to the links -->
-        <br/>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+  
+         <li class="active"><a href=""><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+          <li><a href=""><i class="fa fa-link"></i> <span>Manage User</span></a></li>
+       <li><a href=""><i class="fa fa-link"></i> <span>Permisions</span></a></li>
+
+       <li><a href=""><i class="fa fa-link"></i> <span>Roles</span></a></li>
+         <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Registration</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
+            
+            <li><a href="{{route('pdetail.create')}}">Teachers</a></li>
+
+            <li><a href="{{route('pdetail.profile')}}">My Profile</a></li>
+
           </ul>
         </li>
+         <li><a href="{{route('manager.index')}}"><i class="fa fa-link"></i> <span>Registered Teachers</span></a></li>
+         <li><a href=""><i class="fa fa-link"></i> <span>Registered Schools</span></a></li>
+        <li><a href=""><i class="fa fa-link"></i> <span>Requested Teachers</span></a></li>
+        <li><a href=""><i class="fa fa-link"></i> <span>Replay Teachers</span></a></li>
+        
+        <li><a href=""><i class="fa fa-link"></i> <span>Restore Trashed Teacher</span></a></li>
+
+         <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Schools</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+           
+            <li><a href="">Register</a></li>
+
+            <li><a href="">School Profile</a></li>
+    
+          </ul>
+        </li>
+
+         <li><a href=""><i class="fa fa-link"></i> <span>List of Teachers</span></a></li>
+          <li><a href=""><i class="fa fa-link"></i> <span>Request Teachers</span></a></li>
+          <li><a href=""><i class="fa fa-link"></i> <span>Requested Teachers</span></a></li>
+
+          <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>OTVT</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+           
+          <li><a href=""><i class="fa fa-link"></i> <span>Create Questions</span></a></li>
+          <li><a href=""><i class="fa fa-link"></i> <span>Manage Questions</span></a></li>
+           <li><a href=""><i class="fa fa-link"></i> <span>View Result</span></a></li>
+        
+          <li><a href=""><i class="fa fa-link"></i> <span>View Questions</span></a></li>
+           
+          </ul>
+        </li>
+
+          <li>
+           <a class="nav-link" href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            <i class="fa fa-link"></i>
+                        {{ __('Logout') }}
+                  </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+         </li>
+
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -83,16 +145,14 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" id="app">
     <!-- Content Header (Page header) -->
     
 
     <!-- Main content -->
     <section class="content container-fluid">
 
-      <!--------------------------
-        | Your Page Content Here |
-        -------------------------->
+        @yield('content')
 
     </section>
     <!-- /.content -->
@@ -103,87 +163,14 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      Anything you want
+      <!-- Where Teachers Meet -->
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2019 <a href="#">Teacher Junction</a>.</strong> All rights reserved.
   </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="pull-right-container">
-                    <span class="label label-danger pull-right">70%</span>
-                  </span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-  immediately after the control sidebar -->
+  
+ 
   <div class="control-sidebar-bg"></div>
 </div>
 <script src="/js/app.js"></script>
