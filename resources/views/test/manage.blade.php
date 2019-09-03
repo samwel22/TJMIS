@@ -14,7 +14,6 @@
       <th scope="col">Option 2</th>
       <th scope="col">Option 3</th>
       <th scope="col">Option 4</th>
-      <th scope="col">Answer</th>
       <th scope="col">Point</th>
       <th scope="col">Action</th>
     
@@ -32,7 +31,6 @@
       <td>{{$data->opt2}}</td>
       <td>{{$data->opt3}}</td> 
       <td>{{$data->opt4}}</td> 
-      <td>{{$data->ans}}</td> 
       <td>{{$data->point}}</td> 
        <td><a href="{{route('test.edit',['id'=>$data->id])}}" class="btn btn-info ">Edit</a></td>
         

@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Session;
-use DB;
-use App\Questions;
-use App\Answers;
-class AnswerController extends Controller
+
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +15,8 @@ class AnswerController extends Controller
      */
     public function index()
     {
-         $results=Answers::all();
-        $qns = Questions::all();
-       return view('test.result')->with('results',$results)
-                                 ->with('qns',$qns);
+     $permissions = Permission::all();
+        return view('permission.index',compact('permissions'));
     }
 
     /**
@@ -29,7 +26,7 @@ class AnswerController extends Controller
      */
     public function create()
     {
-        //
+        return view('permission.create');
     }
 
     /**
@@ -40,17 +37,18 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-         $questions = Questions::all();
-            foreach($questions as $qns){
-              $name = "opt".$qns->id;
-              Answers::create([
-             'question_id'=>$qns->id,
-              'answer'=>$request->$name,
-
+        $request->validate([
+            'name' => 'required|unique:permissions|max:20',
         ]);
-    }
-        Session::flash('success','Your answer has been sent successfully');
-        return redirect()->route('test.qns');
+
+        $permissions=Permission::create([
+            'name'=>$request->name,
+        ]);
+        
+        
+        Session::flash('success','Permission created successfully');
+        return redirect()->route('permissions.index');
+        
     }
 
     /**
@@ -61,7 +59,7 @@ class AnswerController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -72,7 +70,9 @@ class AnswerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $permission = Permission::findOrFail($id);
+
+        return view('permission.edit', compact('permission'));
     }
 
     /**
@@ -84,7 +84,15 @@ class AnswerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:permissions|max:20',
+        ]);
+
+        $permission = Permission::findOrFail($id);
+        $permission->update($request->all());
+        Session::flash('success','Permission updated successfully');
+
+        return redirect()->route('permissions.index');
     }
 
     /**
@@ -95,6 +103,9 @@ class AnswerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $permission = Permission::findOrFail($id);
+        $permission->delete();
+        Session::flash('success','Permission deleted successfully');
+        return redirect()->route('permissions.index');
     }
 }

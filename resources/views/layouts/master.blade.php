@@ -65,10 +65,10 @@
         <!-- Optionally, you can add icons to the links -->
   
          <li class="active"><a href="{{route('home')}}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-          <li><a href=""><i class="fa fa-link"></i> <span>Manage User</span></a></li>
-       <li><a href=""><i class="fa fa-link"></i> <span>Permisions</span></a></li>
+          <li><a href="{{route('user')}}"><i class="fa fa-link"></i> <span>Manage User</span></a></li>
+       <li><a href="{{route('permissions.index')}}"><i class="fa fa-link"></i> <span>Permisions</span></a></li>
 
-       <li><a href=""><i class="fa fa-link"></i> <span>Roles</span></a></li>
+       <li><a href="{{route('roles.index')}}"><i class="fa fa-link"></i> <span>Roles</span></a></li>
          <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Registration</span>
             <span class="pull-right-container">
@@ -117,11 +117,11 @@
           </a>
           <ul class="treeview-menu">
            
-          <li><a href=""><i class="fa fa-link"></i> <span>Create Questions</span></a></li>
-          <li><a href=""><i class="fa fa-link"></i> <span>Manage Questions</span></a></li>
-           <li><a href=""><i class="fa fa-link"></i> <span>View Result</span></a></li>
+          <li><a href="{{route('test.qns')}}"><i class="fa fa-link"></i> <span>Create Questions</span></a></li>
+          <li><a href="{{route('test.manage')}}"><i class="fa fa-link"></i> <span>Manage Questions</span></a></li>
+           <li><a href="{{route('test.result')}}"><i class="fa fa-link"></i> <span>View Result</span></a></li>
         
-          <li><a href=""><i class="fa fa-link"></i> <span>View Questions</span></a></li>
+          <li><a href="{{route('test.index')}}"><i class="fa fa-link"></i> <span>View Questions</span></a></li>
            
           </ul>
         </li>

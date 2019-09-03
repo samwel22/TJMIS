@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User; 
 use Session;
-use DB;
-use App\Questions;
-use App\Answers;
-class AnswerController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +14,9 @@ class AnswerController extends Controller
      */
     public function index()
     {
-         $results=Answers::all();
-        $qns = Questions::all();
-       return view('test.result')->with('results',$results)
-                                 ->with('qns',$qns);
+        $users =User::all();
+
+        return view('user')->with('users',$users);
     }
 
     /**
@@ -40,17 +37,7 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-         $questions = Questions::all();
-            foreach($questions as $qns){
-              $name = "opt".$qns->id;
-              Answers::create([
-             'question_id'=>$qns->id,
-              'answer'=>$request->$name,
-
-        ]);
-    }
-        Session::flash('success','Your answer has been sent successfully');
-        return redirect()->route('test.qns');
+        //
     }
 
     /**
@@ -95,6 +82,23 @@ class AnswerController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $user =User::findOrFail($id);
+
+       if(!empty($user))
+       {
+        Session::flash('warning','User can not be deleted as is referenced to another table ');
+       return redirect()->back();
+       }
+       else
+       {
+         $user->delete();
+       }
+      
+
+       Session::flash('success','User deleted successfully');
+       return redirect()->route('user');
+
+
+
     }
 }

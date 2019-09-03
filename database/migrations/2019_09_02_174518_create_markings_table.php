@@ -14,7 +14,10 @@ class CreateMarkingsTable extends Migration
     public function up()
     {
         Schema::create('markings', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->integer('question_id')->unsigned();
+            $table->string('correct_answer');
+            $table->foreign('question_id')->references('id')->on('questions');
             $table->timestamps();
         });
     }

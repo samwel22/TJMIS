@@ -26,7 +26,88 @@ Route::group(['middleware'=>'auth'], function(){
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+ //manage users
+     Route::get('/user',[
+        'uses'=>'UserController@index',
+        'as'=>'user'
+    ]);
 
+      Route::get('/user/delete{id}',[
+        'uses'=>'UserController@destroy',
+        'as'=>'user.delete'
+    ]);
+
+//end of manage users
+      //Start of permision route
+    Route::get('/permissions/index',[
+        'uses'=>'PermissionController@index',
+        'as'=>'permissions.index'
+    ]);
+
+    
+    
+    Route::get('/permissions/create',[
+            'uses'=>'PermissionController@create',
+            'as'=>'permissions.create'
+    ]);
+    
+    
+    Route::post('/permissions/store',[
+        'uses'=>'PermissionController@store',
+        'as'=>'permissions.store'
+    ]);
+
+    Route::get('/permissions/edit{id}',[
+        'uses'=>'PermissionController@edit',
+        'as'=>'permissions.edit'
+    ]);
+
+    Route::get('/permissions/destroy{id}',[
+        'uses'=>'PermissionController@destroy',
+        'as'=>'permissions.destroy'
+    ]);
+
+    Route::post('/permissions/update{id}',[
+        'uses'=>'PermissionController@update',
+        'as'=>'permissions.update'
+    ]);
+    //end of permission route
+
+
+    //Start of roles route
+    Route::get('/roles/index',[
+        'uses'=>'RoleController@index',
+        'as'=>'roles.index'
+    ]);
+
+    
+    
+    Route::get('/roles/create',[
+            'uses'=>'RoleController@create',
+            'as'=>'roles.create'
+    ]);
+    
+    
+    Route::post('/roles/store',[
+        'uses'=>'RoleController@store',
+        'as'=>'roles.store'
+    ]);
+
+    Route::get('/roles/edit{id}',[
+        'uses'=>'RoleController@edit',
+        'as'=>'roles.edit'
+    ]);
+
+    Route::get('/roles/destroy{id}',[
+        'uses'=>'RoleController@destroy',
+        'as'=>'roles.destroy'
+    ]);
+
+    Route::post('/roles/update{id}',[
+        'uses'=>'RoleController@update',
+        'as'=>'roles.update'
+    ]);
+    //end of roles route
 //Route for download
     Route::get('/ecertificate/download{id}',[
     'uses'=>'PdetailController@download',
