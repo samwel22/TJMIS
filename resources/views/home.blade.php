@@ -46,7 +46,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">My Successfull Teacher</div>
+                <div class="card-header">Successfull Teacher</div>
 
                 <div class="card-body">
                    <table class="table table-hover">

@@ -69,6 +69,19 @@
         <input id="password-confirm"  type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
+
+      <div class="form-group row">
+            <div class="col-md-6">
+                <select name="roles" id="role" class="form-control" required="required">
+                 <option value="">Select Status</option>
+                 <option value="1">admin</option>
+                  <option value="2">teacher</option>
+                  <option value="3">school</option>
+
+                 </select>
+                                
+                            </div>
+                        </div>
       <div class="row">
        
         <div class="col-xs-4">

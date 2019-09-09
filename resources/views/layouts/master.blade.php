@@ -65,10 +65,12 @@
         <!-- Optionally, you can add icons to the links -->
   
          <li class="active"><a href="{{route('home')}}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+         
           <li><a href="{{route('user')}}"><i class="fa fa-link"></i> <span>Manage User</span></a></li>
        <li><a href="{{route('permissions.index')}}"><i class="fa fa-link"></i> <span>Permisions</span></a></li>
 
        <li><a href="{{route('roles.index')}}"><i class="fa fa-link"></i> <span>Roles</span></a></li>
+  
          <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Registration</span>
             <span class="pull-right-container">
@@ -83,13 +85,14 @@
 
           </ul>
         </li>
+      
          <li><a href="{{route('manager.index')}}"><i class="fa fa-link"></i> <span>Registered Teachers</span></a></li>
          <li><a href="{{route('school.index')}}"><i class="fa fa-link"></i> <span>Registered Schools</span></a></li>
         <li><a href="{{route('trequest.trequest')}}"><i class="fa fa-link"></i> <span>Requested Teachers</span></a></li>
         <li><a href="{{route('manager.treplay')}}"><i class="fa fa-link"></i> <span>Replay Teachers</span></a></li>
         
         <li><a href=""><i class="fa fa-link"></i> <span>Restore Trashed Teacher</span></a></li>
-
+        
          <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Schools</span>
             <span class="pull-right-container">
@@ -104,11 +107,13 @@
     
           </ul>
         </li>
-
+          
          <li><a href="{{route('school.teacherslist')}}"><i class="fa fa-link"></i> <span>List of Teachers</span></a></li>
+        
           <li><a href="{{route('trequest.create')}}"><i class="fa fa-link"></i> <span>Request Teachers</span></a></li>
+       
           <li><a href="{{route('trequest.index')}}"><i class="fa fa-link"></i> <span>Requested Teachers</span></a></li>
-
+        
           <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>OTVT</span>
             <span class="pull-right-container">
@@ -116,11 +121,11 @@
               </span>
           </a>
           <ul class="treeview-menu">
-           
+      
           <li><a href="{{route('test.qns')}}"><i class="fa fa-link"></i> <span>Create Questions</span></a></li>
           <li><a href="{{route('test.manage')}}"><i class="fa fa-link"></i> <span>Manage Questions</span></a></li>
            <li><a href="{{route('test.result')}}"><i class="fa fa-link"></i> <span>View Result</span></a></li>
-        
+  
           <li><a href="{{route('test.index')}}"><i class="fa fa-link"></i> <span>View Questions</span></a></li>
            
           </ul>
